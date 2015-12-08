@@ -24,9 +24,9 @@ $ composer require vakata/random
 // random 10 char hex string
 \vakata\random\Generator::string(10, 'abcdef01234567890');
 // random int between 0 and PHP_INT_MAX (inclusive)
-\vakata\random\Generator::int();
+\vakata\random\Generator::number();
 // random int between 3 and 12 (inclusive)
-\vakata\random\Generator::int(3, 12);
+\vakata\random\Generator::number(3, 12);
 // 16 bytes
 \vakata\random\Generator::bytes(16);
 ```
