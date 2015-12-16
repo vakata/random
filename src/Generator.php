@@ -2,13 +2,22 @@
 
 namespace vakata\random;
 
+/**
+ * A random data generator class.
+ */
 class Generator
 {
     const HIGH = 1;
     const MEDIUM = 2;
     const LOW = 4;
     const ALL = 7;
-
+    /**
+     * Generate random bytes.
+     * @method bytes
+     * @param  integer $length   amount of bytes to generate
+     * @param  integer $strength bitflag of which sources to use by strength (1-high, 2-medium, 4-low), default to 7
+     * @return string            the random bytes
+     */
     public static function bytes($length = 64, $strength = null)
     {
         if (!$strength) {
@@ -86,6 +95,13 @@ class Generator
 
         return $result;
     }
+    /**
+     * Generate a random string.
+     * @method string
+     * @param  integer $length     the string length
+     * @param  string  $characters chars to include (for example `"ABCDEF0123456789"`)
+     * @return string              the random string
+     */
     public static function string(
         $length = 32,
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -99,6 +115,13 @@ class Generator
 
         return mb_substr($rslt, 0, $length, 'UTF-8');
     }
+    /**
+     * Generate a random number from a range.
+     * @method number
+     * @param  integer $min the minimum number (defaults to 0)
+     * @param  integer $max the maximum number (defaults to PHP_INT_MAX)
+     * @return integer      the random number
+     */
     public static function number($min = 0, $max = PHP_INT_MAX)
     {
         if ($max === $min) {

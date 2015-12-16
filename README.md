@@ -31,6 +31,8 @@ $ composer require vakata/random
 \vakata\random\Generator::bytes(16);
 ```
 
+Read more in the [API docs](docs/README.md)
+
 ## Testing
 
 ``` bash

@@ -1,0 +1,9 @@
+<?php
+return (object)[
+    'rootNamespace' => 'vakata\random',
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => [
+        '\\vakata\\random\\Generator'
+    ],
+];
