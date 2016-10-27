@@ -13,7 +13,6 @@ class Generator
     const ALL = 7;
     /**
      * Generate random bytes.
-     * @method bytes
      * @param  integer $length   amount of bytes to generate
      * @param  integer $strength bitflag of which sources to use by strength (1-high, 2-medium, 4-low), default to 7
      * @return string            the random bytes
@@ -97,7 +96,6 @@ class Generator
     }
     /**
      * Generate a random string.
-     * @method string
      * @param  integer $length     the string length
      * @param  string  $characters chars to include (for example `"ABCDEF0123456789"`)
      * @return string              the random string
@@ -117,7 +115,6 @@ class Generator
     }
     /**
      * Generate a random number from a range.
-     * @method number
      * @param  integer $min the minimum number (defaults to 0)
      * @param  integer $max the maximum number (defaults to PHP_INT_MAX)
      * @return integer      the random number
