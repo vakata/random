@@ -131,7 +131,7 @@ class Generator
     }
     public static function uuid()
     {
-        $hash = bin2hex(static::bytes(16));
+        $hash = bin2hex(static::bytes(16, static::HIGH | static::MEDIUM));
         
         $timeHiVersion = substr($hash, 12, 4);
         $timeHiVersion = hexdec($timeHiVersion) & 0x0fff;
