@@ -129,4 +129,31 @@ class Generator
 
         return $min + abs($rand % ($max - $min + 1));
     }
+    public static function uuid()
+    {
+        $hash = bin2hex(static::bytes(16));
+        
+        $timeHiVersion = substr($hash, 12, 4);
+        $timeHiVersion = hexdec($timeHiVersion) & 0x0fff;
+        $timeHiVersion &= ~(0xf000);
+        $timeHiVersion |= 4 << 12; // version is 4
+        $timeHiVersion = sprintf('%04x', $timeHiVersion);
+        $clockHi = hexdec(substr($hash, 16, 2));
+        $clockHi = $clockHi & 0x3f;
+        $clockHi &= ~(0xc0);
+        $clockHi |= 0x80;
+        $clockHi = sprintf('%02x', $clockHi);
+
+        return vsprintf(
+            '%08s-%04s-%04s-%02s%02s-%012s',
+            [
+                substr($hash, 0, 8),
+                substr($hash, 8, 4),
+                $timeHiVersion,
+                $clockHi,
+                substr($hash, 18, 2),
+                substr($hash, 20, 12)
+            ]
+        );
+    }
 }
