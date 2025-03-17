@@ -27,12 +27,13 @@ class Generator
         string $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     ) : string {
         $rand = static::bytes($length * 2);
-        $lngt = iconv_strlen($characters, 'UTF-8');
+        $chrs = preg_split('//u', $characters, -1, PREG_SPLIT_NO_EMPTY);
+        $lngt = count($chrs);
         $rslt = '';
-        for ($i = 0; $i < strlen($rand); ++$i) {
-            $rslt .= iconv_substr($characters, ord($rand[$i]) % $lngt, 1, 'UTF-8');
+        for ($i = 0; $i < $length; ++$i) {
+            $rslt .= $chrs[ord($rand[$i]) % $lngt];
         }
-        return iconv_substr($rslt, 0, $length, 'UTF-8');
+        return $rslt;
     }
     /**
      * Generate a random number from a range.
@@ -53,7 +54,7 @@ class Generator
     public static function uuid() : string
     {
         $hash = bin2hex(static::bytes(16));
-        
+
         $timeHiVersion = substr($hash, 12, 4);
         $timeHiVersion = hexdec($timeHiVersion) & 0x0fff;
         $timeHiVersion &= ~(0xf000);

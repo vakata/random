@@ -1,19 +1,8 @@
 <?php
 namespace vakata\random\test;
 
-class StorageTest extends \PHPUnit_Framework_TestCase
+class RandomTest extends \PHPUnit\Framework\TestCase
 {
-	protected static $storage = null;
-
-	public static function setUpBeforeClass() {
-	}
-	public static function tearDownAfterClass() {
-	}
-	protected function setUp() {
-	}
-	protected function tearDown() {
-	}
-
 	public function testString() {
 		for ($i = 1; $i <= 100; $i++) {
 			$this->assertEquals($i, strlen(\vakata\random\Generator::string($i)));
